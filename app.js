@@ -4,7 +4,11 @@
   	headers: {"X-Mashape-Key": "hUjiqoTf46mshNz1t3PvUtwEYXFEp1WjzBRjsnocvbUtXEkT9u"}
 	}).done(function(result) {
 		console.log(result);
-		
+		$("#displayHikesHere").empty();
+		for (var i = 0; i < 25; i++) {
+			var newDiv = $("<div>");
+			var trailName;
+		}
 		
 	  
 	})
