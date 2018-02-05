@@ -3,11 +3,13 @@
   	method: 'GET',
   	headers: {"X-Mashape-Key": "hUjiqoTf46mshNz1t3PvUtwEYXFEp1WjzBRjsnocvbUtXEkT9u"}
 	}).done(function(result) {
-		console.log(result);
+		console.log(result.places.length);
+		var numberResults = result.places.length;
 		$("#displayHikesHere").empty();
-		for (var i = 0; i < 25; i++) {
+		for (var i = 0; i < numberResults; i++) {
 			var newDiv = $("<div>");
-			var trailName;
+			var trailName = result.places[i].name;
+			console.log(trailName);
 		}
 		
 	  
