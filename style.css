@@ -1,37 +1,122 @@
-h1 {
-  font-family: 'Crete Round', serif;
-  font-size: 65px;
-  margin-top: 200px;
-  /*border-bottom: 3px;
-  border-bottom-style: solid;
-*/
-}
-/*
-.jumbotron {
-  background-color: transparent;
-  
-}
-*/
-#title{
-	border-bottom: 3px;
-	border-bottom-style: solid;
-	width: 350px;
-}
-
-.btn-lg {
-  color: #EEE3DC;
-  background-color: black;
-  border: transparent;
-  border-radius: 30px;
-}
-
 body {
-  background-image: url("images/background3.jpeg");
-  background-size: cover;
-
+  height: 100%;
 }
 
-p{
-	font-family: 'Abril Fatface', serif;
-	font-size: 30px;
+p {
+    font-family: bebas-neue, sans-serif;
+    font-size: 65px;
+    color: white;
+/*    color: #262626;
+*/    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+}
+
+.main-content {
+  background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("background3.jpeg");
+  background-size: cover;
+  -webkit-animation: kenburns-top 5s ease-out both;
+          animation: kenburns-top 5s ease-out both;
+}
+
+.text {
+    position: absolute;
+    width: 700px;
+    left: 7.5%;
+    height: 40px;
+    top: 30%;
+}
+
+.word {
+    position: absolute;
+    width: 450px;
+    opacity: 0;
+}
+
+.letter {
+    display: inline-block;
+    position: relative;
+    float: left;
+    transform: translateZ(25px);
+    transform-origin: 50% 50% 25px;
+}
+
+.letter.out {
+    transform: rotateX(90deg);
+    transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.letter.behind {
+    transform: rotateX(-90deg);
+}
+
+.letter.in {
+    transform: rotateX(0deg);
+    transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wisteria {
+    color: #FF6444;
+}
+
+.belize {
+    color: #FFC636;
+}
+
+.pomegranate {
+    color: #c0392b;
+}
+
+.green {
+    color: #16a085;
+}
+
+.midnight {
+    color: maroon;
+}
+
+
+/*Button Stuff
+*/
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    align-content: left;
+    flex-wrap: wrap;
+    width: 40vw;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.btn {
+    font-family: bebas-neue, sans-serif;
+    font-size: 32px;
+    letter-spacing: 1.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    position: absolute;
+    width: 175px;
+    left: 7.5%;
+    height: 40px;
+    top: 41%;
+}
+
+.btn:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+}
+
+.btn-1 {
+    background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
 }
