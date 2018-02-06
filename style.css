@@ -1,0 +1,37 @@
+h1 {
+  font-family: 'Crete Round', serif;
+  font-size: 65px;
+  margin-top: 200px;
+  /*border-bottom: 3px;
+  border-bottom-style: solid;
+*/
+}
+/*
+.jumbotron {
+  background-color: transparent;
+  
+}
+*/
+#title{
+	border-bottom: 3px;
+	border-bottom-style: solid;
+	width: 350px;
+}
+
+.btn-lg {
+  color: #EEE3DC;
+  background-color: black;
+  border: transparent;
+  border-radius: 30px;
+}
+
+body {
+  background-image: url("images/background3.jpeg");
+  background-size: cover;
+
+}
+
+p{
+	font-family: 'Abril Fatface', serif;
+	font-size: 30px;
+}
