@@ -1,3 +1,5 @@
+var list = [];
+
 $(".btn").on("click", function() {	
 
 	$("#displayHikesHere").empty();
@@ -12,7 +14,8 @@ $(".btn").on("click", function() {
 		for (var i = 0; i < resultOne.places.length; i++) {
 			latitude = resultOne.places[i].lat;
 			longitude = resultOne.places[i].lon;
-			displayHikes(latitude, longitude, resultOne);
+			list = []; 
+			displayHikes(latitude, longitude, resultOne, resultOne.places[i]);
 		}	
 			
 	})
@@ -20,30 +23,49 @@ $(".btn").on("click", function() {
 	
 })
 
-function displayHikes(latitude, longitude, resultOne) {
+function displayHikes(latitude, longitude, result, resultOne) {
 	$.ajax({
 			url: "http://api.inaturalist.org/v1/observations?lat=" + latitude + "&lng=" + longitude + "&radius=25&order=desc&order_by=created_at",
 			method: 'GET',
 		}).done(function(resultTwo) {
-			
-			for (var i = 0; i < resultOne.places.length; i++) {
+			console.log(resultTwo);
+			for (var i = 0; i < result.places.length; i++) {
 				var newDiv = $("<div>");
 				var otherDiv = $("<div>");
-				console.log(resultOne.places[i]);
-				var trailName = resultOne.places[i].name;
+				var directionsDiv = $("<div>");
+				var mapDiv = $("<div>");
+				var trailName = resultOne.name;
+				var directions = resultOne.directions;
+				directionsDiv.append(directions);
 				newDiv.append(trailName);
+				newDiv.append(directionsDiv);
 				for (var i = 0; i < resultTwo.results.length; i++) {
 					if (resultTwo.results[i].taxon !== null) {
 						var species = resultTwo.results[i].taxon.preferred_common_name + " ";
-						if (species !== undefined) {
-							otherDiv.append(species);
+						if (species !== undefined && speciesCheck(species)) {
+							
+							if (resultTwo.results[i].photos["0"] !== undefined) {
+								otherDiv.append("<a href=" + resultTwo.results[i].photos["0"].url + " target=_blank>" + species + "</a>");
+							}
+							else {
+								otherDiv.append(species);
+							}
 							newDiv.append(otherDiv);
 							
 						}
 					}			
   				}
-				$("#displayHikesHere").append(newDiv);
-				console.log("Hi");			
+				$("#displayHikesHere").append(newDiv);		
 			}
 		})
+}
+
+function speciesCheck(species) {
+	for (var i = 0; i < list.length; i++) {
+		if (list[i] === species) {
+			return false	
+		}
+	}
+	list.push(species)
+	return true
 }
