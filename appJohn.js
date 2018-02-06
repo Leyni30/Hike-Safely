@@ -38,4 +38,13 @@
       
       var locationVal = childSnapshot.val().location;
       var hikeDateVal = childSnapshot.val().hikeDate;
+
+
+
+
+
+	
+		
+	  
+	})
     
