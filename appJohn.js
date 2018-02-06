@@ -18,6 +18,24 @@
   $("#submit-button").on("click", function(event) {
       event.preventDefault();
 
-      var trainName = $("#name-input").val().trim();
-      var destination = $("#destination-input").val().trim();
+      var location = $("#location-input").val().trim();
+      var hikeDate = $("#date-input").val().trim();
+
+      // Push user input values to the firebase database
+      dataRef.ref().push({
+          location: location,
+          hike date: hikeDate
+          
+      });
+
+      // Reset the form after user input
+      document.getElementById("form-input").reset();
+
+  });
+
+  // Retrieve user input values from the database and assign them to variables
+  dataRef.ref().on("child_added", function(childSnapshot) {
+      
+      var locationVal = childSnapshot.val().location;
+      var hikeDateVal = childSnapshot.val().hikeDate;
     
