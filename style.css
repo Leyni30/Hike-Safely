@@ -1,19 +1,5 @@
 body {
-    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("background3.jpeg");
-    /*background-image: url("background3.jpeg");*/
-    background-size: cover;
-}
-
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
-
-
-.text {
-    position: absolute;
-    width: 700px;
-    left: 7.5%;
-    height: 40px;
-    top: 30%;
+  height: 100%;
 }
 
 p {
@@ -24,6 +10,21 @@ p {
 */    display: inline-block;
     vertical-align: top;
     margin: 0;
+}
+
+.main-content {
+  background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("background3.jpeg");
+  background-size: cover;
+  -webkit-animation: kenburns-top 5s ease-out both;
+          animation: kenburns-top 5s ease-out both;
+}
+
+.text {
+    position: absolute;
+    width: 700px;
+    left: 7.5%;
+    height: 40px;
+    top: 30%;
 }
 
 .word {
