@@ -8,7 +8,8 @@ $(".btn").on("click", function() {
   	method: 'GET',
   	headers: {"X-Mashape-Key": "hUjiqoTf46mshNz1t3PvUtwEYXFEp1WjzBRjsnocvbUtXEkT9u"}
 	}).done(function(result) {
-		console.log(result);
+		console.log(result.places.length);
+		var numberResults = result.places.length;
 		$("#displayHikesHere").empty();
 		for (var i = 0; i < result.places.length; i++) {
 			var newDiv = $("<div>");
@@ -29,6 +30,7 @@ $(".btn").on("click", function() {
 				})
 		$("#displayHikesHere").append(newDiv);
 			
+
 		}
 		
 	  
