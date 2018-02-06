@@ -1,5 +1,3 @@
-
-
 $(".btn").on("click", function() {	
 
 	$("#displayHikesHere").empty();
