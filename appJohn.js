@@ -19,12 +19,12 @@
       event.preventDefault();
 
       var location = $("#location-input").val().trim();
-      var hikeDate = $("#date-input").val().trim();
+      var hikeRadius = $("#radius-input").val().trim();
 
       // Push user input values to the firebase database
       dataRef.ref().push({
           location: location,
-          hike date: hikeDate
+          hike radius: hikeRadius
           
       });
 
@@ -37,7 +37,7 @@
   dataRef.ref().on("child_added", function(childSnapshot) {
       
       var locationVal = childSnapshot.val().location;
-      var hikeDateVal = childSnapshot.val().hikeDate;
+      var hikeRadiusVal = childSnapshot.val().hikeRadius;
 
 
 
