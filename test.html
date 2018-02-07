@@ -10,6 +10,15 @@
     <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
     <title>Hike Safely</title>
+    <style type="text/css">
+      #map {
+        height: 400px;
+        width: 100%;
+       }
+      .hide {
+        visibility: collapse !important; 
+      }
+    </style>
 </head>
 
 <body>
@@ -21,10 +30,16 @@
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="#" role="button">Boot On!</a>
   </p>
-  <p id="displayHikesHere"></p>
-</div>
+  </div>
+  <p id="displayHikesHere">
+  </p>
+  <div id="map" class="hide"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="app.js"></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-0erEWG77n2ee8MQpiVbtudzi9ga9PTQ">
+</script>
 </body>
 
 </html>
