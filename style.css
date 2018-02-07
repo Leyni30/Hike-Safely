@@ -1,19 +1,32 @@
 body {
-    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("background3.jpeg");
-    /*background-image: url("background3.jpeg");*/
-    background-size: cover;
+  height: 100%;
+<<<<<<< HEAD
 }
 
+p {
+    font-family: bebas-neue, sans-serif;
+    font-size: 65px;
+    color: white;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+}
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
-
+.main-con {
+  background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("background6.jpeg");
+  background-size: cover;
+}
 
 .text {
     position: absolute;
+    line-height: 1.1;
     width: 700px;
     left: 7.5%;
     height: 40px;
     top: 30%;
+}
+
+=======
 }
 
 p {
@@ -26,6 +39,22 @@ p {
     margin: 0;
 }
 
+.main-content {
+  background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("background3.jpeg");
+  background-size: cover;
+  -webkit-animation: kenburns-top 5s ease-out both;
+          animation: kenburns-top 5s ease-out both;
+}
+
+.text {
+    position: absolute;
+    width: 700px;
+    left: 7.5%;
+    height: 40px;
+    top: 30%;
+}
+
+>>>>>>> a5214cc3d7dc42c2bde3b1f4006cc107fd9bc4ce
 .word {
     position: absolute;
     width: 450px;
