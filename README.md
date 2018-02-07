@@ -20,4 +20,5 @@ This information includes:
 - animation.js
 - jQuery
 - Ajax libary
+- Firebase
 
