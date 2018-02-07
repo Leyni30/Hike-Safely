@@ -1,29 +1,28 @@
 body {
-    background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("background3.jpeg");
-    /*background-image: url("background3.jpeg");*/
-    background-size: cover;
-}
-
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
-
-
-.text {
-    position: absolute;
-    width: 700px;
-    left: 7.5%;
-    height: 40px;
-    top: 30%;
+  height: 100%;
 }
 
 p {
     font-family: bebas-neue, sans-serif;
     font-size: 65px;
     color: white;
-/*    color: #262626;
-*/    display: inline-block;
+    display: inline-block;
     vertical-align: top;
     margin: 0;
+}
+
+.main-con {
+  background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("background6.jpeg");
+  background-size: cover;
+}
+
+.text {
+    position: absolute;
+    line-height: 1.1;
+    width: 700px;
+    left: 7.5%;
+    height: 40px;
+    top: 30%;
 }
 
 .word {
