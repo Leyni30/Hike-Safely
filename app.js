@@ -1,4 +1,7 @@
 var list = [];
+var mapDiv = $("<div id=map>");
+var latitude = 0;
+var longitude = 0;
 
 $(".btn").on("click", function() {	
 
@@ -8,9 +11,8 @@ $(".btn").on("click", function() {
   	method: 'GET',
   	headers: {"X-Mashape-Key": "hUjiqoTf46mshNz1t3PvUtwEYXFEp1WjzBRjsnocvbUtXEkT9u"}
 	}).done(function(resultOne) {
-		var latitude;
-		var longitude;
-		// console.log(resultOne);
+
+		console.log(resultOne);
 		for (var i = 0; i < resultOne.places.length; i++) {
 			latitude = resultOne.places[i].lat;
 			longitude = resultOne.places[i].lon;
@@ -28,17 +30,18 @@ function displayHikes(latitude, longitude, result, resultOne) {
 			url: "http://api.inaturalist.org/v1/observations?lat=" + latitude + "&lng=" + longitude + "&radius=25&order=desc&order_by=created_at",
 			method: 'GET',
 		}).done(function(resultTwo) {
-			console.log(resultTwo);
+			
 			for (var i = 0; i < result.places.length; i++) {
 				var newDiv = $("<div>");
 				var otherDiv = $("<div>");
 				var directionsDiv = $("<div>");
-				var mapDiv = $("<div>");
+				// initMap(latitude,longitude);
 				var trailName = resultOne.name;
 				var directions = resultOne.directions;
 				directionsDiv.append(directions);
 				newDiv.append(trailName);
 				newDiv.append(directionsDiv);
+				newDiv.append(mapDiv);
 				for (var i = 0; i < resultTwo.results.length; i++) {
 					if (resultTwo.results[i].taxon !== null) {
 						var species = resultTwo.results[i].taxon.preferred_common_name + " ";
@@ -69,3 +72,20 @@ function speciesCheck(species) {
 	list.push(species)
 	return true
 }
+
+// function initMap(latitude, longitude) {
+// 	console.log(latitude, longitude);
+// 	var uluru = {lat: latitude, lng: longitude};
+//     var map = new google.maps.Map(document.getElementById('map'), {
+//     zoom: 4,
+//     center: uluru
+//     });
+//     var marker = new google.maps.Marker({
+//     position: uluru,
+//     map: map
+//     });
+    
+// }
+
+
+
