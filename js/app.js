@@ -8,9 +8,9 @@ var config = {
   };
   firebase.initializeApp(config);
 
-  // Create a variable for the firebase database
 
 var array = ["a","b","c","d","e","f","g","h","f","i","j","k","l","m","n","o","p","q","r","s","t","u","v","x","y","z"];
+// Create a variable for the firebase database
 var dataRef = firebase.database();
 var currentUser = "";
 var users = dataRef.ref("/users");
@@ -27,9 +27,15 @@ connectedRef.on("value", function(snap) {
       currentUser += random;
     }
     var con = connectionsRef.push(currentUser);
+    var current = dataRef.ref("/users/" + currentUser);
     // Remove user from the connection list when they disconnect.
     con.onDisconnect().remove();
+    // current.child.remove();
+    dataRef.ref("/users/").child(currentUser).onDisconnect().remove()
   }
+}, function(errorObject) {
+     console.log("The read failed: " + errorObject.code);
+    
 });
 var list = [];
 
@@ -39,6 +45,7 @@ var longitude = 0;
 $(".fs-submit").on("click", function() {
 
     var location = $("#q1").val().trim();
+    var number = $("#q2").val().trim();
     var locationArray = location.split(",");
     var city = locationArray[0];
 
@@ -49,15 +56,17 @@ $(".fs-submit").on("click", function() {
       });
     current.on("value", function(snap){
         if (snap.val().location) {
-            displayTrails(snap.val().location);
+            displayTrails(snap.val().location, number);
         }
-    })
+    }), function(errorObject) {
+        console.log("The read failed: " + errorObject.code);
+    }
 });
     
-function displayTrails (city) { 
+function displayTrails (city, number) { 
     $("#displayTrailsHere").empty();
     $.ajax({
-        url: "https://trailapi-trailapi.p.mashape.com/?limit=25&q[activities_activity_type_name_eq]=hiking&q[city_cont]=" + city,
+        url: "https://trailapi-trailapi.p.mashape.com/?limit=" + number + "&q[activities_activity_type_name_eq]=hiking&q[city_cont]=" + city,
         method: 'GET',
         headers: { "X-Mashape-Key": "QNW46AsiVOmshebCgw9bLIZKNupLp1alRLsjsnB3T9YybL0dfV" }
     }).done(function(resultOne) {
