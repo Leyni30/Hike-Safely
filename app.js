@@ -1,14 +1,19 @@
 var list = [];
-// var mapDiv = $("<div id=map>");
+
 var latitude = 0;
 var longitude = 0;
 
-$(".btn").on("click", function() {	
+$(".fs-submit").on("click", function() {	
 
-	var city = "Denver";
-	$("#displayHikesHere").empty();
+	var location = $("#q1").val().trim();
+	var locationArray = location.split(",");
+	var city = locationArray[0];
+
+	// var city = "Denver";
+	var distance = 25;
+	$("#displayTrailsHere").empty();
 	$.ajax({
-  	url: "https://trailapi-trailapi.p.mashape.com/?limit=25&q[activities_activity_type_name_eq]=hiking&q[city_cont]=" + city,
+  	url: "https://trailapi-trailapi.p.mashape.com/?limit=25&q[activities_activity_type_name_eq]=hiking&q[city_cont]=" + city + "&radius=" + distance,
   	method: 'GET',
   	headers: {"X-Mashape-Key": "QNW46AsiVOmshebCgw9bLIZKNupLp1alRLsjsnB3T9YybL0dfV"}
 	}).done(function(resultOne) {
@@ -21,15 +26,15 @@ $(".btn").on("click", function() {
 			var trailUrl = resultOne.places[i].activities[0].url
 			var directions = resultOne.places[i].directions;
 			var trailName = resultOne.places[i].name;
-			var newDiv = $("<div class=trails>");
+			var newDiv = $("<button type=button class=trails btn btn-primary data-toggle=modal data-target=#centralModalFluid></button>");
 			newDiv.attr("data-lon", longitude);
 			newDiv.attr("data-lat", latitude);
 			newDiv.attr("data-directions", directions);
 			newDiv.attr("data-mileage", hikeLength);
 			newDiv.attr("data-url", trailUrl);
 			newDiv.append(trailName);
-			$("#displayHikesHere").append(newDiv);
-			// displayHikes(latitude, longitude, resultOne, resultOne.places[i]);
+			$("#displayTrailsHere").append(newDiv);
+			
 		}	
 			
 	})
@@ -55,21 +60,33 @@ function displayHikes(latitude, longitude, directions, mileage, url, name) {
 			method: 'GET',
 		}).done(function(resultTwo) {
 			
-			
+				$(".heading").empty();
+				$("#displayHikesHere").empty();
 				var newDiv = $("<div>");
-				var otherDiv = $("<div>");
-				var directionsDiv = $("<div>");
-				var mileageDiv = $("<div>");
-				var urlDiv = $("<div>");
-				initMap(latitude, longitude);
-				mileageDiv.append(mileage);
-				urlDiv.append("<a href=" + url + " target=_blank>" + url + "</a>");
-				directionsDiv.append(directions);
-				newDiv.append(name);
+				var otherDiv = $("<div id=wildlife>");
+				var directionsDiv = $("<div id=directions>");
+				var mileageDiv = $("<div id=mileage>");
+				var urlDiv = $("<div id=url>");
+				if (parseFloat(longitude) !== 0 || parseFloat(latitude) !== 0) {
+					initMap(latitude, longitude);
+				}
+				else {
+					$("#map").html("Sorry we do not have information for the exact location of this trail. Please see the link to the right for more information.")
+				}
+				if (mileage !== "" && mileage !== "0") {
+					mileageDiv.append("Miles: " + mileage);
+				}
+				if (url !== "") {
+					urlDiv.append("<a href=" + url + " target=_blank>" + url + "</a>");
+				}
+				if (directions !== "") {
+					directionsDiv.append("Directions: " + directions);
+				}
+				$(".heading").append(name);
 				newDiv.append(directionsDiv);
 				newDiv.append(mileageDiv);
 				newDiv.append(urlDiv);
-				// newDiv.append(mapDiv);
+				otherDiv.append("Wildlife: ")
 				for (var i = 0; i < resultTwo.results.length; i++) {
 					if (resultTwo.results[i].taxon !== null) {
 						var species = resultTwo.results[i].taxon.preferred_common_name + " ";
@@ -103,9 +120,9 @@ function speciesCheck(species) {
 
 function initMap(latitude, longitude) {
 	$("#map").removeClass("hide");
-	var uluru = {lat: parseInt(latitude), lng: parseInt(longitude)};
+	var uluru = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
     var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 9,
+    zoom: 11,
     center: uluru
     });
     var marker = new google.maps.Marker({

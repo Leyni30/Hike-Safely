@@ -31,15 +31,47 @@
     <a class="btn btn-primary btn-lg" href="#" role="button">Boot On!</a>
   </p>
   </div>
-  <p id="displayHikesHere">
+  <p id="displayTrailsHere">
   </p>
-  <div id="map" class="hide"></div>
+  
+  <!--Modal: modalRelatedContent-->
+<div class="modal fade show" id="centralModalFluid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+data-backdrop="false">
+<div class="modal-dialog modal-lg" role="document">
+   <!--Content-->
+   <div class="modal-content">
+       <!--Header-->
+       <div class="modal-header">
+           <p class="heading"></p>
+
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true" class="white-text">&times;</span>
+               </button>
+       </div>
+
+       <!--Body-->
+       <div class="modal-body">
+
+           <div class="row">
+               <div class="col-5 hide" id="map">
+               </div>
+
+               <div class="col-7">
+                   <p id="displayHikesHere"></p>
+
+               </div>
+           </div>
+       </div>
+   </div>
+   <!--/.Content-->
+</div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="app.js"></script>
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-0erEWG77n2ee8MQpiVbtudzi9ga9PTQ">
 </script>
+<script type="text/javascript" src="app.js"></script>
 </body>
 
 </html>
