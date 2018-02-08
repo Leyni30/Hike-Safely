@@ -96,7 +96,7 @@ $(document).on("click", ".trails", function() {
 
 function displayHikes(latitude, longitude, directions, mileage, url, name) {
     $.ajax({
-        url: "http://api.inaturalist.org/v1/observations?lat=" + latitude + "&lng=" + longitude + "&radius=25&order=desc&order_by=created_at",
+        url: "https://api.inaturalist.org/v1/observations?lat=" + latitude + "&lng=" + longitude + "&radius=25&order=desc&order_by=created_at",
         method: 'GET',
     }).done(function(resultTwo) {
 
