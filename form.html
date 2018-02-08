@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Let's Hike!</title>
+
+
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <link rel="stylesheet" type="text/css" href="css/cs-select.css" />
+    <link rel="stylesheet" type="text/css" href="css/cs-skin-boxes.css" />
+    <script src="js/modernizr.custom.js"></script>
+    <style type="text/css" media="screen">
+    	
+    </style>
+</head>
+
+<body class="test1">
+	<section id="serch-form">
+    <div class="container">
+        <div class="fs-form-wrap" id="fs-form-wrap">
+            <form id="myform" class="fs-form fs-form-full" autocomplete="off">
+                <ol class="fs-fields">
+                    <li>
+                        <label class="fs-field-label fs-anim-upper" for="q1">Where will you hike?</label>
+                        <input class="fs-anim-lower" id="q1" name="q1" type="text" placeholder="Berkeley, CA" required/>
+                    </li>
+                    <li>
+                        <label class="fs-field-label fs-anim-upper" for="q2" data-info="We will narrow your search within this mile radius.">Miles you're willing to travel to the trail:</label>
+                        <input class="fs-anim-lower" id="q2" name="q2" type="number" placeholder="10 miles" required/>
+                    </li>
+                </ol>
+                <!-- /fs-fields -->
+                <a href="#result-wrap" button class="fs-submit" type="submit">Submit</button></a>
+            </form>
+            <!-- /fs-form -->
+        </div>
+        <!-- /fs-form-wrap -->
+    </div>
+    <!-- /container -->
+  </section>
+  <section id="result-wrap" class="hide">
+  	  <!--Modal: modalRelatedContent-->
+		<div class="modal fade show" id="centralModalFluid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="false">
+			<div class="modal-dialog modal-lg" role="document">
+			   <!--Content-->
+			   <div class="modal-content">
+			       <!--Header-->
+			       <div class="modal-header">
+			           <p class="heading"></p>
+			           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                   <span aria-hidden="true" class="white-text">&times;</span>
+			               </button>
+			       </div>
+			       <!--Body-->
+			       <div class="modal-body">
+			           <div class="row">
+			               <div class="col-5 hide" id="map">
+			               </div>
+			               <div class="col-7">
+			                   <p id="displayHikesHere"></p>
+			               </div>
+			           </div>
+			       </div>
+			   </div>
+			   <!--/.Content-->
+			</div>
+		</div>
+		<div class="container" id="trails-content">
+			  <p id="displayTrailsHere">
+			  </p>
+		</div>
+  </section>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-0erEWG77n2ee8MQpiVbtudzi9ga9PTQ">
+    </script>
+    <script src="js/classie.js"></script>
+    <script src="js/selectFx.js"></script>
+    <script src="js/fullscreenForm.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script>
+    (function() {
+        var formWrap = document.getElementById('fs-form-wrap');
+
+        [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function(el) {
+            new SelectFx(el, {
+                stickyPlaceholder: false,
+                onChange: function(val) {
+                    document.querySelector('span.cs-placeholder').style.backgroundColor = val;
+                }
+            });
+        });
+
+        new FForm(formWrap, {
+            onReview: function() {
+                classie.add(document.body, 'overview'); // for demo purposes only
+            }
+        });
+    })();
+    </script>
+</body>
+
+</html>
