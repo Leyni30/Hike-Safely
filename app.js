@@ -1,15 +1,38 @@
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBCzLuyIXvJV7lczmm6ybcvo32vr0jYukU",
+    authDomain: "hike-safely-project.firebaseapp.com",
+    databaseURL: "https://hike-safely-project.firebaseio.com",
+    projectId: "hike-safely-project",
+    storageBucket: "",
+    messagingSenderId: "420632159516"
+  };
+  firebase.initializeApp(config);
+
+  // Create a variable for the firebase database
+var dataRef = firebase.database();
+
+
 var list = [];
 
 var latitude = 0;
 var longitude = 0;
 
-$(".fs-submit").on("click", function() {	
+$(".fs-submit").on("click", function() {
+	event.preventDefault();	
 
-	var location = $("#q1").val().trim();
+	var location = $("#q1").text().trim();
 	var locationArray = location.split(",");
 	var city = locationArray[0];
 
+	dataRef.ref().push({
+          location: city,
+          
+      });
+
+
 	// var city = "Denver";
+	console.log(city);
 	var distance = 25;
 	$("#displayTrailsHere").empty();
 	$.ajax({
