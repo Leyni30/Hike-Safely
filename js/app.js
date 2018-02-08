@@ -42,15 +42,22 @@ $(".fs-submit").on("click", function() {
     var locationArray = location.split(",");
     var city = locationArray[0];
 
-    var city = "Denver";
-    dataRef.ref("/users/" + currentUser).set({
+    var current = dataRef.ref("/users/" + currentUser);
+    current.set({
           location: city,
           
       });
-    var distance = 25;
+    current.on("value", function(snap){
+        if (snap.val().location) {
+            displayTrails(snap.val().location);
+        }
+    })
+});
+    
+function displayTrails (city) { 
     $("#displayTrailsHere").empty();
     $.ajax({
-        url: "https://trailapi-trailapi.p.mashape.com/?limit=25&q[activities_activity_type_name_eq]=hiking&q[city_cont]=" + city + "&radius=" + distance,
+        url: "https://trailapi-trailapi.p.mashape.com/?limit=25&q[activities_activity_type_name_eq]=hiking&q[city_cont]=" + city,
         method: 'GET',
         headers: { "X-Mashape-Key": "QNW46AsiVOmshebCgw9bLIZKNupLp1alRLsjsnB3T9YybL0dfV" }
     }).done(function(resultOne) {
@@ -78,9 +85,11 @@ $(".fs-submit").on("click", function() {
         }
 
     })
+}
 
 
-})
+
+
 
 $(document).on("click", ".trails", function() {
     var longitude = $(this).attr("data-lon");
