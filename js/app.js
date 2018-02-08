@@ -1,16 +1,36 @@
 var config = {
-    apiKey: "AIzaSyBCzLuyIXvJV7lczmm6ybcvo32vr0jYukU",
-    authDomain: "hike-safely-project.firebaseapp.com",
-    databaseURL: "https://hike-safely-project.firebaseio.com",
-    projectId: "hike-safely-project",
+    apiKey: "AIzaSyCzOF0gNskeJlvYH5484yDq5wwRjH57W8o",
+    authDomain: "hike-safely.firebaseapp.com",
+    databaseURL: "https://hike-safely.firebaseio.com",
+    projectId: "hike-safely",
     storageBucket: "",
-    messagingSenderId: "420632159516"
+    messagingSenderId: "395371086661"
   };
   firebase.initializeApp(config);
 
   // Create a variable for the firebase database
 
+var array = ["a","b","c","d","e","f","g","h","f","i","j","k","l","m","n","o","p","q","r","s","t","u","v","x","y","z"];
 var dataRef = firebase.database();
+var currentUser = "";
+var users = dataRef.ref("/users");
+var connectionsRef = dataRef.ref("/connections");
+var connectedRef = dataRef.ref(".info/connected");
+connectedRef.on("value", function(snap) {
+
+  // If they are connected..
+  if (snap.val()) {
+
+    // Add user to the connections list.
+    for (var i = 0; i < 10; i++) {
+      var random = array[Math.floor(Math.random() * array.length)];
+      currentUser += random;
+    }
+    var con = connectionsRef.push(currentUser);
+    // Remove user from the connection list when they disconnect.
+    con.onDisconnect().remove();
+  }
+});
 var list = [];
 
 var latitude = 0;
@@ -23,7 +43,7 @@ $(".fs-submit").on("click", function() {
     var city = locationArray[0];
 
     var city = "Denver";
-    dataRef.ref().push({
+    dataRef.ref("/users/" + currentUser).set({
           location: city,
           
       });
