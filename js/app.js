@@ -74,6 +74,7 @@ function displayTrails (city, number) {
         $("#result-wrap").removeClass('hide');
         $("body").removeClass("test1"); 
         $("body").addClass('test2');
+        $("#restart").removeClass('hide');
 
         for (var i = 0; i < resultOne.places.length; i++) {
             latitude = resultOne.places[i].lat;
@@ -173,6 +174,16 @@ function speciesCheck(species) {
     list.push(species)
     return true
 }
+
+$("#restart").on("click", function resetSearch() {
+    $("#serch-form").removeClass('hide')
+    $("#result-wrap").addClass('hide');
+    $("body").addClass("test1"); 
+    $("body").removeClass('test2');
+    $("#restart").addClass('hide');
+    $("#displayTrailsHere").empty();
+    dataRef.ref("/users/").child(currentUser).remove();
+})
 
 function initMap(latitude, longitude) {
     $("#map").removeClass("hide");
