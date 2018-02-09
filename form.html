@@ -10,13 +10,13 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Crete+Round" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/cs-select.css" />
     <link rel="stylesheet" type="text/css" href="css/cs-skin-boxes.css" />
-        <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
     <link rel="stylesheet" type="text/css" href="css/demo.css" />
-
     <script src="js/modernizr.custom.js"></script>
     <style type="text/css" media="screen">
 
@@ -25,24 +25,24 @@
 
 <body class="test1">
     <section class="container" id="serch-form">
-            <div class="fs-form-wrap" id="fs-form-wrap">
-                <form id="myform" class="fs-form fs-form-full" autocomplete="off">
-                    <ol class="fs-fields">
-                        <li>
-                            <label class="fs-field-label fs-anim-upper" for="q1">Where do you want to hike?</label>
-                            <input class="fs-anim-lower" id="q1" name="q1" type="text" placeholder="Berkeley, CA" required/>
-                        </li>
-                        <li>
-                            <label class="fs-field-label fs-anim-upper" for="q2" data-info="A maximum of 20 results will be displayed.">Enter the number of trails to view.</label>
-                            <input class="fs-anim-lower" id="q2" name="q2" type="number" placeholder="Enter a number" required/>
-                        </li>
-                    </ol>
-                    <!-- /fs-fields -->
-                    <a href="#result-wrap" class="fs-submit" type="submit">Submit</a>
-                </form>
-                <!-- /fs-form -->
-            </div>
-            <!-- /fs-form-wrap -->
+        <div class="fs-form-wrap" id="fs-form-wrap">
+            <form id="myform" class="fs-form fs-form-full" autocomplete="off">
+                <ol class="fs-fields">
+                    <li>
+                        <label class="fs-field-label fs-anim-upper" for="q1">Where do you want to hike?</label>
+                        <input class="fs-anim-lower" id="q1" name="q1" type="text" placeholder="Berkeley, CA" required/>
+                    </li>
+                    <li>
+                        <label class="fs-field-label fs-anim-upper" for="q2" data-info="A maximum of 20 results will be displayed.">Enter the number of trails to view.</label>
+                        <input class="fs-anim-lower" id="q2" name="q2" type="number" placeholder="Enter a number" required/>
+                    </li>
+                </ol>
+                <!-- /fs-fields -->
+                <a href="#result-wrap" class="fs-submit" type="submit">Submit</a>
+            </form>
+            <!-- /fs-form -->
+        </div>
+        <!-- /fs-form-wrap -->
         <!-- /container -->
     </section>
     <section id="result-wrap" class="hide">
@@ -75,6 +75,7 @@
         <div class="container" id="trails-content">
             <p id="displayTrailsHere">
             </p>
+                         <button id="restart" class="hide">Search Again</button>
         </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
