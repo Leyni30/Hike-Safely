@@ -37,7 +37,7 @@ connectedRef.on("value", function(snap) {
      console.log("The read failed: " + errorObject.code);
     
 });
-var list = [];
+var speciesList = [];
 
 var latitude = 0;
 var longitude = 0;
@@ -55,7 +55,7 @@ $(".fs-submit").on("click", function() {
           
       });
     current.on("value", function(snap){
-        if (snap.val().location) {
+        if (snap.val().location !== null) {
             displayTrails(snap.val().location, number);
         }
     }), function(errorObject) {
@@ -64,7 +64,7 @@ $(".fs-submit").on("click", function() {
 });
     
 function displayTrails (city, number) { 
-    $("#displayTrailsHere").empty();
+    
     $.ajax({
         url: "https://trailapi-trailapi.p.mashape.com/?limit=" + number + "&q[activities_activity_type_name_eq]=hiking&q[city_cont]=" + city,
         method: 'GET',
@@ -75,12 +75,13 @@ function displayTrails (city, number) {
         $("body").removeClass("test1"); 
         $("body").addClass('test2');
         $("#restart").removeClass('hide');
+        $("#displayTrailsHere").empty();
 
         for (var i = 0; i < resultOne.places.length; i++) {
             latitude = resultOne.places[i].lat;
             longitude = resultOne.places[i].lon;
-            list = [];
-            var hikeLength = resultOne.places[i].activities[0].length;
+            speciesList = [];
+            var trailMileage = resultOne.places[i].activities[0].length;
             var trailUrl = resultOne.places[i].activities[0].url
             var directions = resultOne.places[i].directions;
             var trailName = resultOne.places[i].name;
@@ -88,7 +89,7 @@ function displayTrails (city, number) {
             newDiv.attr("data-lon", longitude);
             newDiv.attr("data-lat", latitude);
             newDiv.attr("data-directions", directions);
-            newDiv.attr("data-mileage", hikeLength);
+            newDiv.attr("data-mileage", trailMileage);
             newDiv.attr("data-url", trailUrl);
             newDiv.append(trailName);
             $("#displayTrailsHere").append(newDiv);
@@ -122,14 +123,14 @@ function displayHikes(latitude, longitude, directions, mileage, url, name) {
         $(".heading").empty();
         $("#displayHikesHere").empty();
         var newDiv = $("<div>");
-        var otherDiv = $("<div id=wildlife>");
+        var wildlifeDiv = $("<div id=wildlife>");
         var directionsDiv = $("<div id=directions>");
         var mileageDiv = $("<div id=mileage>");
         var urlDiv = $("<div id=url>");
         if (parseFloat(longitude) !== 0 || parseFloat(latitude) !== 0) {
             initMap(latitude, longitude);
         } else {
-            $("#map").html("Sorry we do not have information for the exact location of this trail. Please see the link to the right for more information.")
+            $("#map").html("A map of this trail is not available. For more information about the trail, click the trail link.")
         }
         if (mileage !== "" && mileage !== "0") {
             mileageDiv.append("Miles: " + mileage);
@@ -144,18 +145,18 @@ function displayHikes(latitude, longitude, directions, mileage, url, name) {
         newDiv.append(directionsDiv);
         newDiv.append(mileageDiv);
         newDiv.append(urlDiv);
-        otherDiv.append("Wildlife: ")
+        wildlifeDiv.append("Wildlife: ")
         for (var i = 0; i < resultTwo.results.length; i++) {
             if (resultTwo.results[i].taxon !== null) {
                 var species = resultTwo.results[i].taxon.preferred_common_name + " ";
                 if (species !== undefined && speciesCheck(species)) {
 
                     if (resultTwo.results[i].photos["0"] !== undefined) {
-                        otherDiv.append("<a href=" + resultTwo.results[i].photos["0"].url + " target=_blank>" + species + "</a>");
+                        wildlifeDiv.append("<a href=" + resultTwo.results[i].photos["0"].url + " target=_blank>" + species + "</a>");
                     } else {
-                        otherDiv.append(species);
+                        wildlifeDiv.append(species);
                     }
-                    newDiv.append(otherDiv);
+                    newDiv.append(wildlifeDiv);
 
                 }
             }
@@ -166,12 +167,12 @@ function displayHikes(latitude, longitude, directions, mileage, url, name) {
 }
 
 function speciesCheck(species) {
-    for (var i = 0; i < list.length; i++) {
-        if (list[i] === species) {
+    for (var i = 0; i < speciesList.length; i++) {
+        if (speciesList[i] === species) {
             return false
         }
     }
-    list.push(species)
+    speciesList.push(species)
     return true
 }
 
