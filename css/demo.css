@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
 @font-face {
 	font-weight: normal;
 	font-style: normal;
@@ -31,17 +31,20 @@ body {
 	background: #3b3f45 !important;
 	color: #fff;
 }
+
 .test2 {
 	background: #fff;
 	color: #000;
 }
 
 .hide {
-    		display: none;
+  display: none;
 }
+
 #result-p {
 	background: white;
 }
+
 #result-wrap {
 	background: #fff;
 }
