@@ -155,7 +155,6 @@ var connectionsRef = dataRef.ref("/connections");
 var connectedRef = dataRef.ref(".info/connected");
 // Call a function when the connected state of a user changes in firebase.
 connectedRef.on("value", function(snap) {
-
   // If the user is connected, generate a random reference for the user by cycling through the array of letters.
   if (snap.val()) {
     for (var i = 0; i < 10; i++) {
@@ -168,21 +167,21 @@ connectedRef.on("value", function(snap) {
     var current = dataRef.ref("/users/" + currentUser);
     // Remove the user from the connections list when the user is disconnected from firebase.
     con.onDisconnect().remove();
-    // Remove the child of the user from the connections list when the user is disconnected from firebase.
+    // Remove the child of the user from the users list when the user is disconnected from firebase.
     dataRef.ref("/users/").child(currentUser).onDisconnect().remove()
   }
 // If an error occurs while running the function for a change in the user's connected state, display an error message in the console log.
 }, function(errorObject) {
-     console.log("The read failed: " + errorObject.code);
-    
+     console.log("The read failed: " + errorObject.code);    
 });
+
 // Set a global variable for an array that will contain a list of species, and set global variables for the latitude and longitude.
 var speciesList = [];
 var latitude = 0;
 var longitude = 0;
 // Call a function when the user clicks the Submit button.
 $(".fs-submit").on("click", function() {
-    // Set up variables for the trail API filters. The user enters the filter for the city, which is derived from the location in the trail API. The user also enters the filter for the number of trails to view.
+    // Set up variables for the trail API filters. The user enters the filter for the city, which is associated with the location in the trail API. The user also enters the filter for the number of trails to view.
     var location = $("#q1").val().trim();
     var number = $("#q2").val().trim();
     var locationArray = location.split(",");
@@ -198,11 +197,12 @@ $(".fs-submit").on("click", function() {
         if (snap.val().location !== null) {
             displayTrails(snap.val().location, number);
         }
-    // If an error occurs while running the function to retrieve the trail data, display an error message in the console log.
+    // If an error occurs while running the function for the current user in firebase, display an error message in the console log.
     }), function(errorObject) {
         console.log("The read failed: " + errorObject.code);
     }
 });
+
 // Create the function that retrieves trail data from the trail API by using the city and number of trails that the user enters.    
 function displayTrails (city, number) { 
     // Create a AJAX call to retrieve trail data from the trail API.
@@ -244,12 +244,8 @@ function displayTrails (city, number) {
             // Append the new div to the div that holds all application data.
             $("#displayTrailsHere").append(newDiv);
         }
-
     })
 }
-
-
-
 
 // When the user clicks a trail button, call a function to create variables for the attributes in the new div, and create a variable for the trail name in the new div.
 $(document).on("click", ".trails", function() {
@@ -261,9 +257,8 @@ $(document).on("click", ".trails", function() {
     var trailName = $(this).text();
     // Call the function that takes in the trail data variables to display the trail detail.
     displayHikes(latitude, longitude, directions, mileage, url, trailName);
-
-
 })
+
 // Create the function to display the trail detail and wildlife data.
 function displayHikes(latitude, longitude, directions, mileage, url, name) {
     // Create a AJAX call to retrieve wildlife data from the iNaturalist API. This call filters returned data using the latitude and longitude from the trail API.
@@ -315,7 +310,6 @@ function displayHikes(latitude, longitude, directions, mileage, url, name) {
                 var species = resultTwo.results[i].taxon.preferred_common_name + " ";
                 // If the species is available from the iNaturalist API or is not already in the species array that the speciesCheck function creates, and if a photo is available from the iNaturalist API, append the photo and species name to the div that holds the wildlife data.
                 if (species !== undefined && speciesCheck(species)) {
-
                     if (resultTwo.results[i].photos["0"] !== undefined) {
                         wildlifeDiv.append("<a href=" + resultTwo.results[i].photos["0"].url + " target=_blank>" + species + "</a>");
                     // If a photo is not available from the iNaturalist API, append only species name to the div that holds the wildlife data.
@@ -324,15 +318,14 @@ function displayHikes(latitude, longitude, directions, mileage, url, name) {
                     }
                     // Append the div that holds the wildlife data to the div that holds the trail data.
                     newDiv.append(wildlifeDiv);
-
                 }
             }
         }
         // Append the div that holds the trail data to the div that holds all application data.
         $("#displayHikesHere").append(newDiv);
-
     })
 }
+
 // Call a function to determine if a species already exists in the species array. This function avoids showing the species more than once for a trail data record.
 function speciesCheck(species) {
     // If the species already exists in the species array, take no further action.
@@ -345,6 +338,7 @@ function speciesCheck(species) {
     speciesList.push(species)
     return true
 }
+
 // Call a function when the user clicks the Search Again button.
 $("#restart").on("click", function resetSearch() {
     // Show the search form, hide the search results, and hide the Search Again button.
@@ -355,9 +349,10 @@ $("#restart").on("click", function resetSearch() {
     $("#restart").addClass('hide');
     // Clear the div that holds all application data.
     $("#displayTrailsHere").empty();
-    // Remove the child of the user from the connections list when the user is disconnected from firebase.
+    // Remove the child of the user from the users list when the user is disconnected from firebase.
     dataRef.ref("/users/").child(currentUser).remove();
 })
+
 // Create a function that takes in latitude and longitude to retrieve the map for the trail.
 function initMap(latitude, longitude) {
     // Before displaying the map, remove the class to hide the map.
@@ -373,6 +368,5 @@ function initMap(latitude, longitude) {
         position: uluru,
         map: map
     });
-
 }
 
