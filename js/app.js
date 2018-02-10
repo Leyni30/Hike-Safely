@@ -133,6 +133,7 @@
 
 // }
 
+// Initialize the firebase database.
 var config = {
     apiKey: "AIzaSyCzOF0gNskeJlvYH5484yDq5wwRjH57W8o",
     authDomain: "hike-safely.firebaseapp.com",
