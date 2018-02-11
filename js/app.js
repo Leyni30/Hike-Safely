@@ -167,7 +167,7 @@ connectedRef.on("value", function(snap) {
     var current = dataRef.ref("/users/" + currentUser);
     // Remove the user from the connections list when the user is disconnected from firebase.
     con.onDisconnect().remove();
-    // Remove the child of the user from the users list when the user is disconnected from firebase.
+    // Remove the user from the users list when the user is disconnected from firebase.
     dataRef.ref("/users/").child(currentUser).onDisconnect().remove()
   }
 // If an error occurs while running the function for a change in the user's connected state, display an error message in the console log.
@@ -349,7 +349,7 @@ $("#restart").on("click", function resetSearch() {
     $("#restart").addClass('hide');
     // Clear the div that holds all application data.
     $("#displayTrailsHere").empty();
-    // Remove the child of the user from the users list when the user is disconnected from firebase.
+    // Remove the user from the users list in firebase.
     dataRef.ref("/users/").child(currentUser).remove();
 })
 
