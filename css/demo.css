@@ -33,8 +33,8 @@ body {
 }
 
 .test2 {
-	background: #fff;
-	color: #000;
+	background: #3b3f45;
+	color: #fff;
 }
 
 .hide {
@@ -46,18 +46,18 @@ body {
 }
 
 #result-wrap {
-	background: #fff;
+	background: #3b3f45;
 }
 
 
 a {
-	color: rgba(0,0,0,0.3);
+	color: white
 	text-decoration: none;
 	outline: none;
 }
 
 a:hover, a:focus {
-	color: #fff;
+	color: white;
 }
 
 /* Top Navigation Style */
