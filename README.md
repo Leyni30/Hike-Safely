@@ -9,6 +9,13 @@ This information includes:
 - A link to a website with more information about the trail.
 - A listing of wildlife, including plants and animals, that exists near the trail.
 
+# Application Screenshots
+
+![review submit image](images/reviewSubmit.png)
+
+![buttons image](images/buttons.png)
+
+![modal image](images/modal.png)
 
 # Tools Used
 - Trail API (for trail information)
