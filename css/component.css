@@ -1,3 +1,43 @@
+.modal {
+	vertical-align: center
+}
+
+button#restart.fs-submit {
+	float: right;
+}
+
+p.heading {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+p#displayTrailsHere {
+	text-align: center;
+	padding-top: 2%;
+}
+
+button.trails {
+	margin: 2px;
+}
+
+div.modal-body {
+	background: #3B3F45
+}
+
+div.modal-header {
+	background: #3B3F45
+}
+
+div.modal-content {
+	border-style: solid
+	border-color: white !important;
+	border-width: 10px
+}
+
+#wildlife {
+	color: white !important;
+}
+
 /* Main form wrapper */
 .fs-form-wrap {
 	position: relative;
@@ -63,7 +103,7 @@
 .-form-overview .fs-fields::before {
 	display: block;
 	margin-bottom: 2.5em;
-	color: #3b3f45;
+	color: white;
 	content: 'Review & Submit';
 	font-weight: 700;
 	font-size: 1.85em;
@@ -551,11 +591,12 @@ button.fs-continue,
 /* Continue button and submit button */
 button.fs-submit,
 button.fs-continue {
+	background-color: #3b3f45;
 	padding: 0.6em 1.5em;
 	border: 3px solid rgba(225,225,225,0.4);
 	border-radius: 40px;
 	font-weight: 700;
-	color: rgba(225,225,225,0.4);
+	color: white;
 }
 
 .fs-form-overview .fs-submit,
@@ -580,6 +621,7 @@ button.fs-continue {
 }
 
 .fs-form-overview .fs-submit {
+
 	border-color: #232529;
 	color: #B3A65A;
 	font-size: 30px;
@@ -587,6 +629,7 @@ button.fs-continue {
 	background-color: #E4D8B9;
 	padding:10px;
 	border-radius: 15px;
+
 }
 
 button.fs-continue {
@@ -835,6 +878,7 @@ input[type=text]::-ms-clear {
 		-webkit-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
 	}
+
 }
 .row{
 	background-color: #3C3F44;
@@ -879,4 +923,5 @@ button.trails{
 .trails:hover {
   background-position: right center; /* change the direction of the change here */
 }
+
 

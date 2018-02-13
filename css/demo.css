@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+@import url("https://p.typekit.net/p.css?s=1&k=jmg7eou&ht=tk&f=13407.24561.24562.24571.24572&a=9318335&app=typekit&e=css");
+
 @font-face {
 	font-weight: normal;
 	font-style: normal;
@@ -33,8 +35,8 @@ body {
 }
 
 .test2 {
-	background: #fff;
-	color: #000;
+	background: #3b3f45;
+	color: #fff;
 }
 
 .hide {
@@ -46,18 +48,18 @@ body {
 }
 
 #result-wrap {
-	background: #fff;
+	background: #3b3f45;
 }
 
 
 a {
-	color: rgba(0,0,0,0.3);
+	color: white
 	text-decoration: none;
 	outline: none;
 }
 
 a:hover, a:focus {
-	color: #fff;
+	color: white;
 }
 
 /* Top Navigation Style */
